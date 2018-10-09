@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { HttpService } from './shared/services/http-service';
+
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  data:any=[];
+  constructor(private httpService: HttpService){}
+
+  ngOnInit(){
+    this.httpService.getData()
+    .then((data)=>{
+      this.data= data;
+      console.log(data);
+    })
+  }
+  
 }
